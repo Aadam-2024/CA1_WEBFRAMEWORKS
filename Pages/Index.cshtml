@@ -1,0 +1,57 @@
+﻿@page
+@model CA_NIHARIKA_WEBSHOP.Pages.IndexModel
+@{
+    ViewData["Title"] = "Workshop Registration";
+}
+
+<div class="container mt-4" style="max-width: 600px; font-family: Arial, sans-serif;">
+    <h2>Workshop Registration Form</h2>
+    <p class="text-muted">Please complete your workshop preferences below.</p>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" style="color: red; background-color: #fde8e8; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+            <strong>Error:</strong> @Model.ErrorMessage
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success" style="color: green; background-color: #eafaf1; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+            <strong>Success!</strong> @Model.SuccessMessage
+        </div>
+    }
+
+    <form method="post">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display:block; font-weight:bold; margin-bottom:5px;">First Name:</label>
+            <input type="text" asp-for="FirstName" class="form-control" required minlength="2" placeholder="Enter your first name" style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display:block; font-weight:bold; margin-bottom:5px;">Age (16 - 120):</label>
+            <input type="number" asp-for="Age" class="form-control" required min="16" max="120" placeholder="e.g. 21" style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display:block; font-weight:bold; margin-bottom:5px;">Choose a Workshop:</label>
+            <select asp-for="WorkshopName" class="form-control" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+                <option value="">-- Select a Workshop --</option>
+                <option value="Web Frameworks Architecture">Web Frameworks Architecture</option>
+                <option value="Advanced C# & .NET Programming">Advanced C# & .NET Programming</option>
+                <option value="Frontend Development Basics">Frontend Development Basics</option>
+            </select>
+        </div>
+
+        <div class="form-check" style="margin-bottom: 20px;">
+            <label style="font-weight: bold; cursor: pointer;">
+                <input type="checkbox" asp-for="RequiresLaptop" class="form-check-input" />
+                I require a rental laptop for this workshop
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="background-color: #0056b3; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+            Register for Workshop
+        </button>
+    </form>
+</div>
