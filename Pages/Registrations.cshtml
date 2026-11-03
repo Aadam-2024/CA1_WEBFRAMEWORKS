@@ -1,0 +1,43 @@
+
+@page
+@model CA_NIHARIKA_WEBSHOP.Pages.RegistrationsModel
+
+@{
+    ViewData["Title"] = "View Registrations";
+}
+
+<div class="container mt-4">
+    <h2>Workshop Registrations</h2>
+
+    <p>Organiser view: All saved workshop registrations.</p>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-info">@Model.Message</div>
+    }
+
+    @if (Model.Registrations.Count > 0)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Age</th>
+                    <th>Workshop</th>
+                    <th>Requires Laptop</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var registration in Model.Registrations)
+                {
+                    <tr>
+                        <td>@registration.FirstName</td>
+                        <td>@registration.Age</td>
+                        <td>@registration.WorkshopName</td>
+                        <td>@(registration.RequiresLaptop ? "Yes" : "No")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
